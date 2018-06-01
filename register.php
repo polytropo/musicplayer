@@ -21,8 +21,28 @@
 <head>
 	<title>Welcome to Slotify!</title>
 	<link rel="stylesheet" type="text/css" href="assets/css/register.css">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="assets/js/register.js"></script>
 </head>
 <body>
+	<?php 
+		if(isset($_POST['registerButton'])) {
+			echo '<script>
+					$(document).ready(function() {
+						$("#loginForm").hide();
+						$("#registerForm").show();
+					});
+				</script>';
+		} else {
+			echo '<script>
+					$(document).ready(function() {
+						$("#loginForm").show();
+						$("#registerForm").hide();
+					});
+				</script>';
+		}
+	?>
 	<div id="background">
 		<div id="loginContainer">
 			<div id="inputContainer">
@@ -31,7 +51,7 @@
 					<p>
 						<?php echo $account->getError(Constants::$loginFailed); ?>
 						<label for="loginUsername">Username</label>
-						<input id="loginUsername" name="loginUsername" type="text" placeholder="e.g. bartSimpson" required>
+						<input id="loginUsername" name="loginUsername" type="text" placeholder="e.g. bartSimpson" value="<?php getInputValue('loginUsername') ?>" required>
 					</p>
 					<p>
 						<label for="loginPassword">Password</label>
@@ -105,6 +125,15 @@
 
 
 			</div>	<!-- End inputContainer -->
+			<div id="loginText">
+				<h1>Get great music, right in front of you</h1>
+				<h2>Listen to songs for free</h2>
+				<ul>
+					<li>Discover music you'll fall in love with</li>
+					<li>Create your own playlists</li>
+					<li>Follow artists to keep up to date</li>
+				</ul>
+			</div>
 		</div> <!-- End loginContainer -->
 	</div> <!-- End background -->	
 </body>
